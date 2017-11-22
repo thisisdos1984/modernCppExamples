@@ -17,12 +17,12 @@ class SList
 
 		_node (int value): value{value}, next{nullptr} { }
 
-	} *m_root;
+	} *m_root, *m_current;
 
    public:
 
-   	SList() : m_root {nullptr} { }
-   	SList(std::vector<int>input);
+   	SList() : m_root {nullptr}, m_current{nullptr} { }
+   	SList(const std::vector<int> &input);
 	~SList();
    	void addNode(int value);
 	std::shared_ptr<SList> sum (std::shared_ptr<SList> other);
@@ -30,7 +30,7 @@ class SList
 
 };
 
-SList::SList(std::vector<int> input)
+SList::SList(const std::vector<int> &input)
 {
 	for (auto x : input)
 		addNode(x);
@@ -38,13 +38,14 @@ SList::SList(std::vector<int> input)
 
 SList::~SList()
 {
-	auto tmpPtr = m_root;
-	while (tmpPtr != nullptr)
+	while (m_root != nullptr)
 	{
+		auto tmpPtr = m_root;
+		m_root = m_root->next;
 		delete tmpPtr;
-		tmpPtr = tmpPtr->next;
 	}
 	m_root = nullptr;
+	m_current = nullptr;
 }
 
 // is this a correct prototype ?
@@ -86,17 +87,12 @@ void SList::addNode(int value)
 	auto newPtr = new _node(value);
 	if (m_root == nullptr)
 	{
-		m_root = newPtr;
+		m_current = m_root = newPtr;
 		return;
 	}
-	auto tmpPtr = m_root;
 
-	while (tmpPtr->next != nullptr)
-	{
-		tmpPtr = tmpPtr->next;
-	}
-
-	tmpPtr->next = newPtr;
+	m_current->next = newPtr;
+	m_current = m_current->next;
 
 	return;
 }
