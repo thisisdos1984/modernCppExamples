@@ -116,8 +116,8 @@ void SList::print()
 
 int main()
 {
-	std::shared_ptr <SList> l1 (new SList({1,2,3,4}));
-	std::shared_ptr <SList> l2 (new SList({5,6,7,8,9}));
+	auto l1 = std::make_shared<SList> (std::vector<int>{1,2,3,4});
+	auto l2 = std::make_shared<SList> (std::vector<int>{5,6,7,8,9});
 	std::shared_ptr<SList> sum (l1->sum(l2));
 	l1->print();
 	l2->print();
