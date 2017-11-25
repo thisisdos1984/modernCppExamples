@@ -1,3 +1,5 @@
+/*
+
 int BTree::_calcWidth(Node *root, int count)
 {
     if (root == nullptr)
@@ -12,7 +14,7 @@ int BTree::calcWidth()
 {
     return _calcWidth(m_root, 0) + 1;
 }
-
+*/
 
 int main(int argc, char *argv[])
 {
