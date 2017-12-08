@@ -71,14 +71,14 @@ bool solveQueens(std::vector <std::vector<int>> &input)
 	return solveQueensHelper(input, 0);
 }
 
+#define BOARD_SIZE 25
 
 int main()
 {
-	std::vector <std::vector <int> > input(8, std::vector<int>(8, 0));
+	std::vector <std::vector <int> > input(BOARD_SIZE, std::vector<int>(BOARD_SIZE, 0));
 
 	solveQueens(input);
 
-	printBoard(input);
 
 	return 0;
 }
